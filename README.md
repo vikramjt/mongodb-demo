@@ -11,6 +11,38 @@ This project exposes REST APIs for product CRUD operations, pagination, and Mong
 - Aggregation API over `unitsSold` (sum, avg, min, max, count, and by-category totals)
 - Additional operation API to adjust `unitsSold` by delta
 
+## MongoDB vs Elasticsearch
+
+Both MongoDB and Elasticsearch support aggregation-style queries, but they are designed for different primary use cases.
+
+### MongoDB
+
+- Best for application data storage and CRUD APIs
+- Good choice when you need flexible JSON-like documents
+- Supports pagination, filtering, updates, and moderate analytics
+- Better fit when the database is your system of record
+- Recommended for transactional app backends, product catalogs, user profiles, and order systems
+
+### Elasticsearch
+
+- Best for search-heavy use cases
+- Strong for full-text search, fuzzy matching, autocomplete, relevance ranking, and faceted search
+- Excellent for logs, audit events, and search analytics
+- Usually used as a search/index layer rather than the primary source of truth
+- Recommended when search is the core requirement
+
+### Which one should you choose?
+
+- Choose **MongoDB** if your main need is CRUD, application persistence, flexible documents, and standard aggregations
+- Choose **Elasticsearch** if your main need is full-text search, ranking, autocomplete, and search analytics
+- Use **both** if MongoDB should store the data and Elasticsearch should power advanced search
+
+### Rule of thumb
+
+- If you need a **database** for application data, choose **MongoDB**
+- If you need a **search engine**, choose **Elasticsearch**
+- If you need both, keep MongoDB as the source of truth and sync selected fields to Elasticsearch
+
 ## Tech Stack
 
 - Java 17
